@@ -90,8 +90,14 @@
 <script src="https://cdn.jsdelivr.net/jquery.drawsvg/1/jquery.drawsvg.min.js">
 </script>
 
-<script type="text/javascript"  src="drawsvg.js">
- 
+<script type="text/javascript">
+ var $svg = $('svg').drawsvg({
+  duration: 1000,
+
+  stagger: '100',
+  reverse: 'true'
+});
+$svg.drawsvg('animate');
 </script>
   </body>
 </html>
