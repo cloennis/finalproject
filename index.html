@@ -1,0 +1,77 @@
+<!doctype html>
+<!-- Styles -->
+<style>
+#chartdiv {
+  width: 100%;
+  height: 500px;
+}
+</style>
+
+<!-- Resources -->
+<script src="https://www.amcharts.com/lib/4/core.js"></script>
+<script src="https://www.amcharts.com/lib/4/charts.js"></script>
+<script src="https://www.amcharts.com/lib/4/themes/frozen.js"></script>
+<script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+
+<!-- Chart code -->
+<script>
+am4core.ready(function() {
+
+// Themes begin
+am4core.useTheme(am4themes_frozen);
+am4core.useTheme(am4themes_animated);
+// Themes end
+var iconPath=
+ "m 153,606.1186 c -7.85377,7.9e-4 -15.6653,3.22779 -21.21875,8.78125 -5.55346,5.55345 -8.78046,13.36498 -8.78125,21.21875 l 0,370 c 7.9e-4,7.8538 3.22779,15.6653 8.78125,21.2188 5.55345,5.5535 13.36498,8.7804 21.21875,8.7812 l 150,0 c 7.85377,-8e-4 15.6653,-3.2277 21.21875,-8.7812 5.55346,-5.5535 8.78046,-13.365 8.78125,-21.2188 l 0,-370 c -7.9e-4,-7.85377 -3.22779,-15.6653 -8.78125,-21.21875 C 318.6653,609.34639 310.85377,606.11939 303,606.1186 l -150,0 z m 59.28125,20 a 5.0062461,5.0062461 0 0 1 0.21875,0 5.0005,5.0005 0 0 1 0.5,0 l 30,0 a 5.0005,5.0005 0 1 1 0,10 l -30,0 a 5.0128984,5.0128984 0 0 1 -0.71875,-10 z m -79.28125,30 190,0 0,325 -190,0 0,-325 z m 95,335 c 8.28427,0 15,6.71573 15,15 0,8.2843 -6.71573,15 -15,15 -8.28427,0 -15,-6.7157 -15,-15 0,-8.28427 6.71573,-15 15,-15 z"
+
+
+var chart = am4core.create("chartdiv", am4charts.SlicedChart);
+chart.hiddenState.properties.opacity = 0; // this makes initial fade in effect
+
+chart.data = [{
+    "name": "Monday",
+    "value": 80
+}, {
+    "name": "Tuesday",
+    "value": 111
+}, {
+    "name": "Wednesday",
+    "value": 94
+}, {
+    "name": "Thursday",
+    "value": 137
+}, {
+    "name": "Friday",
+    "value":104
+}, {
+    "name": "Saturday",
+    "value": 70
+}, {
+    "name": "Sunday",
+    "value":99
+}];
+
+var series = chart.series.push(new am4charts.PictorialStackedSeries());
+series.dataFields.value = "value";
+series.dataFields.category = "name";
+series.alignLabels = true;
+
+series.maskSprite.path = iconPath;
+series.ticks.template.locationX = 1;
+series.ticks.template.locationY = 0.5;
+
+series.labelsContainer.width = 200;
+
+chart.legend = new am4charts.Legend();
+chart.legend.position = "left";
+chart.legend.valign = "bottom";
+
+}); // end am4core.ready()
+</script>
+<h1>How Much Time Chloe Spent on her Phone</h1>
+<h3>
+  The first week of December, I decided to keep track of how many hours I spent on my phone.  For the entire week I spent an average of 4 hours and 44 minutes on my phone per day.  Here is an outline of how much time I spent on my phone each day.
+</h3>
+<!-- HTML -->
+<div id="chartdiv"></div>
+<p> Time spent on the phone per week</p>
